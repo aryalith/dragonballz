@@ -3,11 +3,13 @@ const { connectDB } = require("./src/utils/db")
 const env = require("dotenv")
 const routerCharacters = require("./src/api/routes/character.routes")
 env.config()
+const cors = require("cors")
 
 connectDB();
 const server = express();
 const PORT = process.env.PORT;
 
+server.use(cors())
 server.use(express.json());
 server.use("/characters", routerCharacters)
 
